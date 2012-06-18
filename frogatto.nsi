@@ -10,6 +10,9 @@ section
     # set the installation directory as the destination for the following actions
     setOutPath $INSTDIR
  
+	# test file
+	File test.txt
+ 
     # create the uninstaller
     writeUninstaller "$INSTDIR\uninstall.exe"
  
@@ -26,6 +29,9 @@ section "uninstall"
  
     # second, remove the link from the start menu
     delete "$SMPROGRAMS\new shortcut.lnk"
+	
+	# now remove actual file
+	delete "$INSTDIR\test.txt"
  
 # uninstaller section end
 sectionEnd
