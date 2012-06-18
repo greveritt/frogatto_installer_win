@@ -1,0 +1,1 @@
+This should eventually be a fully functional package of Frogatto 1.2 for Windows. Unusable so far.
