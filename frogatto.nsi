@@ -16,17 +16,13 @@ Section
     # set the installation directory as the destination for the following actions
     SetOutPath $INSTDIR
  
-	# The commented code below this was part of an attempt to get the save files to go into My Documents\My Games via symlink. Unfortunately, symlinks are only supported on Vista and up, so for the time being this feature is abandoned.
-	## get location of My Documents folder... hopefully
-	## ReadRegStr $0 HKCU "Software\Microsoft\Windows\Explorer\User Shell Folders" "Personal"
-	
 	# create symlink to My Games
 	CreateDirectory "$DOCUMENTS\My Games\${APPNAME}"
-	!system 'mklink save.cfg  "$DOCUMENTS\My Games\${APPNAME}\save.cfg"'
-	!system 'mklink preferences.cfg  "$DOCUMENTS\My Games\${APPNAME}\preferences.cfg"'
+	nsExec::Exec 'mklink "$INSTDIR\save.cfg" "$DOCUMENTS\My Games\${APPNAME}\save.cfg"'
+	nsExec::Exec 'mklink "$INSTDIR\preferences.cfg"  "$DOCUMENTS\My Games\${APPNAME}\preferences.cfg"'
  
 	# bin and config files
-	File /r frogatto_msvc_bin\*
+	# File /r frogatto_msvc_bin\*
 		
 	# game data folders (possibly copied to $INSTDIR?)
 	#File frogatto_msvc_bin\data\*
@@ -39,8 +35,8 @@ Section
     # point the new shortcut at the program uninstaller
 	CreateDirectory "$SMPROGRAMS\${APPNAME}"
     CreateShortCut "$SMPROGRAMS\${APPNAME}\Uninstall ${APPNAME}.lnk" "$INSTDIR\uninstall.exe"
-	CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\frogatto.exe"
-	CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME} (fullscreen).lnk" "$INSTDIR\frogatto_fullscreen.bat"
+	#CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\frogatto.exe"
+	#CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME} (fullscreen).lnk" "$INSTDIR\frogatto_fullscreen.bat"
 SectionEnd
 
 # uninstaller section start
@@ -51,8 +47,8 @@ Section "uninstall"
  
     # second, remove the links from the start menu
     Delete "$SMPROGRAMS\${APPNAME}\Uninstall ${APPNAME}.lnk"
-	Delete "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk"
-	Delete "$SMPROGRAMS\${APPNAME}\${APPNAME} (fullscreen).lnk"
+	#Delete "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk"
+	#Delete "$SMPROGRAMS\${APPNAME}\${APPNAME} (fullscreen).lnk"
 	RMDir "$SMPROGRAMS\${APPNAME}\"
 	
 	# back up saves and preferences
