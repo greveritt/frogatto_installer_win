@@ -2,7 +2,7 @@
 outFile "setup.exe"
 
 # define installation directory
-installDir $DESKTOP
+installDir $PROGRAMFILES\Frogatto
 
 # start default section
 section
@@ -10,8 +10,12 @@ section
     # set the installation directory as the destination for the following actions
     setOutPath $INSTDIR
  
-	# test file
-	File test.txt
+	# bin and config files
+	File /r frogatto_msvc_bin\*
+	
+	# game data folders (possibly copied to $INSTDIR?)
+	#File frogatto_msvc_bin\data\*
+	#File frogatto_msvc_bin\images\*
  
     # create the uninstaller
     writeUninstaller "$INSTDIR\uninstall.exe"
@@ -30,8 +34,9 @@ section "uninstall"
     # second, remove the link from the start menu
     delete "$SMPROGRAMS\new shortcut.lnk"
 	
-	# now remove actual file
-	delete "$INSTDIR\test.txt"
+	# now remove actual file(s)
+	# does NOT preserve saved games
+	delete "$INSTDIR\*"
  
 # uninstaller section end
 sectionEnd

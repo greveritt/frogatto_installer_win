@@ -1,1 +1,3 @@
-This should eventually be a fully functional package of Frogatto 1.2 for Windows. Unusable so far.
+This should eventually be a fully functional package of Frogatto 1.2 for Windows. So far, it can install the game but not uninstall it without deleting saves or without leaving data folders and their contents.
+
+To get this to work, you must have a folder in the installer directory named "frogatto_msvc_bin" (without the quotes), and that folder must include all the files to be installed. I may include this folder in the repository at some point.
