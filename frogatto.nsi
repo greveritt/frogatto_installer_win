@@ -1,14 +1,19 @@
 # define name of installer
 outFile "setup.exe"
 
-# define installation directory
-installDir $PROGRAMFILES\Frogatto
+# define installation directory as a folder within AppData
+# This is DANGEROUS and creates risk of virus infection, but I can't avoid this without a) modifying the game's source or b) making this incompatible with XP and lower
+installDir $APPDATA\FrogattoApp
 
 # start default section
 section
  
     # set the installation directory as the destination for the following actions
     setOutPath $INSTDIR
+ 
+	# The commented code below this was part of an attempt to get the save files to go into My Documents\My Games via symlink. Unfortunately, symlinks are only supported on Vista and up, so for the time being this feature is abandoned.
+	## get location of My Documents folder... hopefully
+	## ReadRegStr $0 HKCU "Software\Microsoft\Windows\Explorer\User Shell Folders" "Personal"
  
 	# bin and config files
 	File /r frogatto_msvc_bin\*
@@ -34,9 +39,17 @@ section "uninstall"
     # second, remove the link from the start menu
     delete "$SMPROGRAMS\new shortcut.lnk"
 	
-	# now remove actual file(s)
-	# does NOT preserve saved games
+	# back up saves and preferences
+	Rename "$INSTDIR\save.cfg" "$TEMP\frogatto_save.cfg"
+	Rename "$INSTDIR\preferences.cfg" "$TEMP\frogatto_preferences.cfg"
+	
+	# now remove actual file(s) and file folders
 	delete "$INSTDIR\*"
+	RMDir /r "$INSTDIR\*"
+	
+	# restore saves and preferences
+	Rename "$TEMP\frogatto_save.cfg" "$INSTDIR\save.cfg" 
+	Rename "$TEMP\frogatto_preferences.cfg" "$INSTDIR\preferences.cfg" 
  
 # uninstaller section end
 sectionEnd
