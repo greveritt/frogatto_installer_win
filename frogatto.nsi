@@ -45,7 +45,18 @@ section "uninstall"
 	
 	# now remove actual file(s) and file folders
 	delete "$INSTDIR\*"
-	RMDir /r "$INSTDIR\*"
+	RMDir /r "$INSTDIR\data"
+	RMDir /r "$INSTDIR\images"
+	RMDir /r "$INSTDIR\locale"
+	RMDir /r "$INSTDIR\music"
+	RMDir /r "$INSTDIR\music_aac"
+	RMDir /r "$INSTDIR\music_aac_mini"
+	RMDir /r "$INSTDIR\po"
+	RMDir /r "$INSTDIR\sounds"
+	RMDir /r "$INSTDIR\sounds_wav"
+	RMDir /r "$INSTDIR\stats"
+	RMDir /r "$INSTDIR\utils"
+	
 	
 	# restore saves and preferences
 	Rename "$TEMP\frogatto_save.cfg" "$INSTDIR\save.cfg" 
