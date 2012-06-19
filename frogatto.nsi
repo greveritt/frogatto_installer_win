@@ -16,16 +16,8 @@ Section
     # set the installation directory as the destination for the following actions
     SetOutPath $INSTDIR
  
-	# The commented code below this was part of an attempt to get the save files to go into My Documents\My Games via symlink. Unfortunately, symlinks are only supported on Vista and up, so for the time being this feature is abandoned.
-	## get location of My Documents folder... hopefully
-	## ReadRegStr $0 HKCU "Software\Microsoft\Windows\Explorer\User Shell Folders" "Personal"
- 
 	# bin and config files
 	File /r frogatto_msvc_bin\*
-	
-	# game data folders (possibly copied to $INSTDIR?)
-	#File frogatto_msvc_bin\data\*
-	#File frogatto_msvc_bin\images\*
  
     # create the uninstaller
     WriteUninstaller "$INSTDIR\uninstall.exe"
