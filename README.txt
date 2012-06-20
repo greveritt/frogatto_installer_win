@@ -1,7 +1,6 @@
 This should eventually be a fully functional package of Frogatto 1.2 for Windows. So far, it can install and uninstall the game, but only to a folder within AppData. Yeah, I know.
 
 Not yet implemented:
-* Shortcut icons
 * user rights check
 * graphics
 * letting users choose install directory

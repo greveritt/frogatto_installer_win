@@ -1,4 +1,5 @@
 !define APPNAME "Frogatto & Friends"
+!define ICONNAME "frogatto.ico"
 
 # define name of installer
 OutFile "FrogattoSetup.exe"
@@ -16,8 +17,9 @@ Section
     # set the installation directory as the destination for the following actions
     SetOutPath $INSTDIR
 
-	# bin and config files
-	File /r frogatto_msvc_bin\*
+    # file to be installed
+    File /r frogatto_msvc_bin\*    # bin and config files
+    File frogatto.ico    # icon file for shortcuts
 
     # create the uninstaller
     WriteUninstaller "$INSTDIR\uninstall.exe"
@@ -38,8 +40,8 @@ Section
     # point the new shortcut at the program uninstaller
     CreateDirectory "$SMPROGRAMS\${APPNAME}"
     CreateShortCut "$SMPROGRAMS\${APPNAME}\Uninstall ${APPNAME}.lnk" "$INSTDIR\uninstall.exe"
-    CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\frogatto.exe"
-    CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME} (fullscreen).lnk" "$INSTDIR\frogatto_fullscreen.bat"
+    CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\frogatto.exe" "" "$INSTDIR\${ICONNAME}"
+    CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME} (fullscreen).lnk" "$INSTDIR\frogatto_fullscreen.bat" "" "$INSTDIR\${ICONNAME}"
 SectionEnd
 
 # uninstaller section start
