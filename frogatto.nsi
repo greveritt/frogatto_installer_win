@@ -1,7 +1,7 @@
 !define APPNAME "Frogatto & Friends"
 
 # define name of installer
-OutFile "setup.exe"
+OutFile "FrogattoSetup.exe"
 
 # sets elevation to have proper location of shortcuts
 RequestExecutionLevel admin

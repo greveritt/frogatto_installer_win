@@ -4,7 +4,6 @@ Not yet implemented:
 * Shortcut icons
 * user rights check
 * graphics
-* name that's less generic than "setup.exe"
 * letting users choose install directory
 * making directory removal safe (in case user picks a vital directory to store files, like Program Files or System32)
 * whatever else I think of!
