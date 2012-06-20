@@ -2,7 +2,6 @@ This should eventually be a fully functional package of Frogatto 1.2 for Windows
 
 Not yet implemented:
 * Shortcut icons
-* Application registration/uninstall entry
 * user rights check
 * graphics
 * name that's less generic than "setup.exe"
